@@ -1,9 +1,16 @@
 const $originText = document.getElementById("origin-text");
 const $obfuscatedText = document.getElementById("obfuscated-text");
+const $copyBtn = document.getElementById("copy-btn");
 
 function init() {
   obfuscates();
-
+  $copyBtn.addEventListener("click", () => {
+    navigator.clipboard
+      .writeText($obfuscatedText.innerText)
+      .catch((err) => {
+        console.log("Something went wrong", err);
+      });
+  });
 }
 init();
 
@@ -14,7 +21,6 @@ function obfuscates() {
       clearTimeout(qr_timeout);
     }
     qr_timeout = setTimeout(function () {
-      console.log($originText.value);
       let result = obfuscatedText($originText.value);
       $obfuscatedText.innerText = result;
     }, 500);
@@ -48,5 +54,3 @@ function obfuscates() {
     return Math.floor(Math.random() * 4) + 1;
   }
 }
-
-
