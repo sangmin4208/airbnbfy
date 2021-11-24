@@ -4,6 +4,8 @@ const $copyBtn = document.getElementById("copy-btn");
 
 function init() {
   obfuscates();
+  $originText.value = `이곳에 입력된 텍스트는 아래에서 외국인들이 알아보기 힘들게 변경됩니다.`
+  $originText.dispatchEvent(new Event('input'))
   $copyBtn.addEventListener("click", () => {
     navigator.clipboard
       .writeText($obfuscatedText.innerText)
@@ -51,6 +53,6 @@ function obfuscates() {
   }
   // rand return a number from 1 to 28
   function rand() {
-    return Math.floor(Math.random() * 4) + 1;
+    return Math.floor(Math.random() * 2) + 1;
   }
 }
